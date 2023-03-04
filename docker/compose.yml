@@ -1,0 +1,9 @@
+version: '3'
+services:
+  tomcat:
+    image: tomcat:10.1.6-jdk17-temurin-jammy
+    container_name: tomcat_10_jdk17
+    ports: 
+      - "8080:8080"
+    volumes:
+      - ./webapps:/usr/local/tomcat/webapps

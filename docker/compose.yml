@@ -1,8 +1,8 @@
 version: '3'
 services:
   tomcat:
-    image: tomcat:10.1.6-jdk17-temurin-jammy
-    container_name: tomcat_10_jdk17
+    image: tomcat:9.0.109-jdk8-temurin-noble
+    container_name: tomcat_9_jdk8
     ports: 
       - "8080:8080"
     volumes:

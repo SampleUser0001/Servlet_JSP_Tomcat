@@ -30,11 +30,11 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'ittimfn.servlet.App'
+    // mainClass = 'ittimfn.servlet.MyServlet'
 }
 
-sourceCompatibility = 17
-targetCompatibility = 17
+sourceCompatibility = 8
+targetCompatibility = 8
 
 tasks.named('test') {
     // Use JUnit Platform for unit tests.

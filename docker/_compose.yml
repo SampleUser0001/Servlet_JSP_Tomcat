@@ -1,0 +1,13 @@
+version: '3'
+services:
+  tomcat:
+    image: tomcat:9.0.109-jdk8-temurin-noble
+    container_name: tomcat_9_jdk8
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./webapps:/usr/local/tomcat/webapps
+      - ../external-config:/external-config
+      - ../external-config/log4j2:/usr/local/tomcat/lib/external-config
+    environment:
+      - JAVA_OPTS=-Dlog4j.configurationFile=file:/external-config/log4j2/log4j2.xml

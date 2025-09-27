@@ -174,6 +174,10 @@ cd ..
 
 # シンボリックリンクは機能しないので、ファイルコピーする。
 cp ./app/build/libs/app.war ./docker/webapps/
+
+cd docker
+docker-compose up -d
+sudo chmod +r logs/*.*
 ```
 
 ### 起動

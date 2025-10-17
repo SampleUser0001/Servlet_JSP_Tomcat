@@ -22,4 +22,4 @@ build
 !/docker/webapps/*.war
 
 ./docker/logs/*
-./docker/logs/.gitkeep
+!./docker/logs/.gitkeep

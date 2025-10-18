@@ -3,9 +3,11 @@ pushd docker > /dev/null
 docker-compose down
 popd
 
+pushd app > /dev/null
 ./gradlew war
+popd
 
-cp ./app/build/libs/app.war ./docker/webapps/
+cp ./app/app/build/libs/app.war ./docker/webapps/
 
 pushd docker > /dev/null
 docker-compose up -d

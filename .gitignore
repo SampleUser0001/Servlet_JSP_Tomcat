@@ -23,3 +23,5 @@ build
 
 ./docker/logs/*
 !./docker/logs/.gitkeep
+
+.python-version

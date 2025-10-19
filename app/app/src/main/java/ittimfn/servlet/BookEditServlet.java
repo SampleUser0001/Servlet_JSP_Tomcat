@@ -7,29 +7,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
+
+import static ittimfn.servlet.BookData.ALL_BOOKS;
 
 /**
  * 書籍編集画面表示サーブレット
  */
 public class BookEditServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
-    // サンプルデータ
-    private static final List<Book> ALL_BOOKS = new ArrayList<>();
-
-    static {
-        ALL_BOOKS.add(new Book("B001", "Javaプログラミング入門", "山田太郎", "技術書", 2020));
-        ALL_BOOKS.add(new Book("B002", "データベース設計", "佐藤花子", "技術書", 2019));
-        ALL_BOOKS.add(new Book("B003", "Web開発の基礎", "鈴木一郎", "技術書", 2021));
-        ALL_BOOKS.add(new Book("B004", "デザインパターン", "田中次郎", "技術書", 2018));
-        ALL_BOOKS.add(new Book("B005", "アルゴリズム入門", "高橋三郎", "技術書", 2022));
-        ALL_BOOKS.add(new Book("B006", "Python実践ガイド", "伊藤美咲", "技術書", 2021));
-        ALL_BOOKS.add(new Book("B007", "ネットワークの基礎", "渡辺健", "技術書", 2020));
-        ALL_BOOKS.add(new Book("B008", "セキュリティ入門", "中村真理", "技術書", 2023));
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

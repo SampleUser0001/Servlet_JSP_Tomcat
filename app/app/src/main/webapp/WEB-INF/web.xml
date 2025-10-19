@@ -91,4 +91,13 @@
     <url-pattern>/bookCreate</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>BookUpdateServlet</servlet-name>
+    <servlet-class>ittimfn.servlet.BookUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BookUpdateServlet</servlet-name>
+    <url-pattern>/bookUpdate</url-pattern>
+  </servlet-mapping>
+
 </web-app>

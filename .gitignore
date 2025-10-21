@@ -19,7 +19,6 @@ build
 /app/bin
 
 /docker/webapps/*
-!/docker/webapps/*.war
 
 ./docker/logs/*
 !./docker/logs/.gitkeep

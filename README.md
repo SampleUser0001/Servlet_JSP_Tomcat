@@ -11,6 +11,7 @@
     - [デプロイ](#デプロイ)
     - [起動](#起動)
     - [url](#url)
+  - [EL文](#el文)
   - [参考](#参考)
 
 ## ディレクトリ構成
@@ -191,6 +192,10 @@ docker-compose up -d
 - [localhost:8080/sample](localhost:8080/sample)
 - [localhost:8080/app](localhost:8080/app)
 - [localhost:8080/app/bookSearch](localhost:8080/app/bookSearch)
+
+## EL文
+
+- [USE_EL](./USE_EL.md)
 
 ## 参考
 

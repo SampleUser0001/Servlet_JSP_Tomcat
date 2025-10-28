@@ -24,3 +24,5 @@ build
 !./docker/logs/.gitkeep
 
 .python-version
+
+target

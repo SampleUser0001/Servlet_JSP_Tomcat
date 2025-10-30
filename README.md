@@ -1,6 +1,7 @@
 # Servlet_JSP_Tomcat
 
 - [Servlet\_JSP\_Tomcat](#servlet_jsp_tomcat)
+  - [POSTの実装あれこれ](#postの実装あれこれ)
   - [ディレクトリ構成](#ディレクトリ構成)
     - [./main/java/ittimfn/servlet/MyServlet.java](#mainjavaittimfnservletmyservletjava)
     - [./main/webapp/WEB-INF/web.xml](#mainwebappweb-infwebxml)
@@ -13,6 +14,10 @@
     - [url](#url)
   - [EL文](#el文)
   - [参考](#参考)
+
+## POSTの実装あれこれ
+
+- [./use_el/tomcat-helloworld/src/main/webapp/form.jsp](./use_el/tomcat-helloworld/src/main/webapp/form.jsp)
 
 ## ディレクトリ構成
 
@@ -192,6 +197,7 @@ docker-compose up -d
 - [localhost:8080/sample](localhost:8080/sample)
 - [localhost:8080/app](localhost:8080/app)
 - [localhost:8080/app/bookSearch](localhost:8080/app/bookSearch)
+- [localhost:8080/tomcat-helloworld/hello](http://localhost:8080/tomcat-helloworld/hello)
 
 ## EL文
 

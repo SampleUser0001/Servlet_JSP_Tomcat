@@ -41,7 +41,9 @@ public class HelloServlet extends HttpServlet {
         String greeting = null;
         if (!trimmedName.isEmpty()) {
             greeting = "サーブレットからのメッセージです。こんにちは、" + trimmedName + "さん。";
-        }   
+        }
+        logger.info("入力欄 name: {}", trimmedName);
+        logger.info("特に入力欄もないが、JavaScriptで生成されて送信される値. send: {}", req.getParameter("send"));
 
         req.setAttribute("inputValue", trimmedName);
         req.setAttribute("greeting", greeting);

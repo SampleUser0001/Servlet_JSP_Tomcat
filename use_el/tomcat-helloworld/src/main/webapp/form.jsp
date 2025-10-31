@@ -46,17 +46,31 @@
                 alert("通信に失敗しました。");
             });
     }
+
+    function genChild(elementId, value) {
+        const existingElement = document.getElementById(elementId);
+
+        // valueが指定されていない場合、既存要素の値を使用
+        if (value === undefined || value === null) {
+            value = existingElement ? existingElement.value || "" : "";
+        }
+
+        // hidden inputを作成
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = elementId;
+        input.value = value;
+
+        return input;
+    }
+
     function submit_form() {
-        const nameField = document.getElementById("name");
         const form = document.createElement("form");
         form.method = "POST";
         form.action = "${pageContext.request.contextPath}/hello";
 
-        const nameInput = document.createElement("input");
-        nameInput.type = "hidden";
-        nameInput.name = "name";
-        nameInput.value = nameField ? nameField.value : "";
-        form.appendChild(nameInput);
+        form.appendChild(genChild("name"));
+        form.appendChild(genChild("send", "value"));
 
         document.body.appendChild(form);
         form.submit();

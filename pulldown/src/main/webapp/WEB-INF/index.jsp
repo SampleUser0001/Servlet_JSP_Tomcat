@@ -7,6 +7,11 @@
     <title>Pulldown Selection</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/js/all.min.js"></script>
+    <script>
+        function submit_form() {
+            const selectedValue = document.getElementById("sample_select").value;
+            }
+    </script>
   </head>
 
   <body class="has-background-light">

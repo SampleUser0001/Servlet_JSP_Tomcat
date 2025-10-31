@@ -8,9 +8,34 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/js/all.min.js"></script>
     <script>
-        function submit_form() {
-            const selectedValue = document.getElementById("sample_select").value;
-            }
+    function genChild(elementId, value) {
+        const existingElement = document.getElementById(elementId);
+
+        // valueが指定されていない場合、既存要素の値を使用
+        if (value === undefined || value === null) {
+            value = existingElement ? existingElement.value || "" : "";
+        }
+
+        // hidden inputを作成
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = elementId;
+        input.value = value;
+
+        return input;
+    }
+
+    function submit_form() {
+        const form = document.createElement("form");
+        form.method = "POST";
+        form.action = "${pageContext.request.contextPath}/hello";
+
+        form.appendChild(genChild("sample_select"));
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
     </script>
   </head>
 
@@ -53,11 +78,12 @@
                       </label>
                       <div class="control has-icons-left">
                         <div class="select is-fullwidth is-medium">
-                          <select id="sample_select" name="options" onchange="this.form.submit()">
-                            <option value="">項目を選択してください</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
+                          <%@ page
+                            import="ittimfn.sample.tomcat.pulldown.OptionsEnum"
+                            import="static ittimfn.sample.tomcat.pulldown.IndexServlet.SELECT_KEY"
+                          %>
+                          <select id="sample_select" name="sample_select" onchange="this.form.submit()">
+                            <%= OptionsEnum.getOptionsHTML(request.getAttribute(SELECT_KEY)) %>
                           </select>
                         </div>
                         <span class="icon is-left">

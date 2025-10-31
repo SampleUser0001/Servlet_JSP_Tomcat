@@ -15,6 +15,11 @@ popd
 
 cp ./use_el/tomcat-helloworld/target/tomcat-helloworld.war ./docker/webapps/
 
+pushd pulldown > /dev/null
+mvn clean compile package
+popd
+cp ./pulldown/target/pulldown.war ./docker/webapps/
+
 pushd docker > /dev/null
 docker-compose up -d
 pushd logs > /dev/null

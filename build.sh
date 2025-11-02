@@ -25,6 +25,16 @@ mvn clean compile package
 popd
 cp ./jsp_include_param/target/jsp_include_param.war ./docker/webapps/
 
+pushd ./jsp_include_param/variants/jsp_include_param_rendered > /dev/null
+mvn clean compile package
+popd
+cp ./jsp_include_param/variants/jsp_include_param_rendered/target/jsp_include_param_rendered.war ./docker/webapps/
+
+pushd ./jsp_include_param/variants/jsp_include_param_rendered_02 > /dev/null
+mvn clean compile package
+popd
+cp ./jsp_include_param/variants/jsp_include_param_rendered_02/target/jsp_include_param_rendered_02.war ./docker/webapps/
+
 pushd docker > /dev/null
 docker-compose up -d
 pushd logs > /dev/null

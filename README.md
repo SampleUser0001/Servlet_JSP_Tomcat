@@ -200,6 +200,9 @@ docker-compose up -d
 - [localhost:8080/tomcat-helloworld/hello](http://localhost:8080/tomcat-helloworld/hello)
     - 何種類かのPOSTする方法
 - [http://localhost:8080/pulldown/](http://localhost:8080/pulldown/)
+- [http://localhost:8080/jsp_include_param/](http://localhost:8080/jsp_include_param/)
+- [http://localhost:8080/jsp_include_param_rendered/](http://localhost:8080/jsp_include_param_rendered/)
+- [http://localhost:8080/jsp_include_param_rendered_02/](http://localhost:8080/jsp_include_param_rendered_02/)
 
 ## EL文
 

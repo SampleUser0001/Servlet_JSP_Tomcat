@@ -198,6 +198,7 @@ docker-compose up -d
 - [localhost:8080/app](localhost:8080/app)
 - [localhost:8080/app/bookSearch](localhost:8080/app/bookSearch)
 - [localhost:8080/tomcat-helloworld/hello](http://localhost:8080/tomcat-helloworld/hello)
+    - 何種類かのPOSTする方法
 - [http://localhost:8080/pulldown/](http://localhost:8080/pulldown/)
 
 ## EL文

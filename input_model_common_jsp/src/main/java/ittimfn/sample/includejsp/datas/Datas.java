@@ -18,4 +18,13 @@ public interface Datas {
         return new InputModel("", "");
     }
 
+    public static void updateData(InputModel updatedModel) {
+        for (InputModel model : DATA_LIST) {
+            if (model.getFormid().equals(updatedModel.getFormid())) {
+                model.setValue(updatedModel.getValue());
+                break;
+            }
+        }
+    }
+
 }

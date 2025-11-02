@@ -36,13 +36,13 @@
             <% } %>
           </thead>
 
-          <% 
+          <%
             List<InputModel> list = (List<InputModel>) request.getAttribute("list");
           %>
 
           <tbody>
             <% for (InputModel model : list) { %>
-              <tr>
+              <tr style="cursor: pointer;" onclick="location.href='<%= request.getContextPath() %>/update?formid=<%= model.getFormid() %>'">
                 <td><%= model.getFormid() %></td>
                 <td><%= model.getValue() %></td>
               </tr>

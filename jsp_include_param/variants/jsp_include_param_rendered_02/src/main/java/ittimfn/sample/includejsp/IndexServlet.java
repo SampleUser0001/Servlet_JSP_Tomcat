@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ittimfn.sample.includejsp.models.PulldownModel;
 import ittimfn.sample.includejsp.enums.OptionsEnum01;
 import ittimfn.sample.includejsp.enums.OptionsEnum02;
 

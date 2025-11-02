@@ -23,15 +23,6 @@ public enum OptionsEnum01 {
         this.label = label;
     }
 
-    public static List<PulldownOptionModel> createOptions(int selectedValue) {
-        List<PulldownOptionModel> options = new ArrayList<>();
-        for (OptionsEnum01 option : OptionsEnum01.values()) {
-            boolean isSelected = option.getValue() == selectedValue;
-            options.add(new PulldownOptionModel(String.valueOf(option.getValue()), option.getLabel(), isSelected));
-        }
-        return options;
-    }
-
     public static OptionsEnum01 getDefault() {
         return OPTION_2;
     }

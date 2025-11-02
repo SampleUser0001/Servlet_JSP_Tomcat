@@ -4,8 +4,6 @@ import lombok.Getter;
 import java.util.List;
 import java.util.ArrayList;
 
-import ittimfn.sample.includejsp.models.PulldownOptionModel;
-
 @Getter
 public enum OptionsEnum01 {
     OPTION_1(1, "Option 1"),

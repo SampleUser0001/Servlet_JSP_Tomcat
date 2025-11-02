@@ -35,6 +35,11 @@ mvn clean compile package
 popd
 cp ./jsp_include_param/variants/jsp_include_param_rendered_02/target/jsp_include_param_rendered_02.war ./docker/webapps/
 
+pushd ./input_model_common_jsp > /dev/null
+mvn clean compile package
+popd
+cp ./input_model_common_jsp/target/input_model_common_jsp.war ./docker/webapps/
+
 pushd docker > /dev/null
 docker-compose up -d
 pushd logs > /dev/null

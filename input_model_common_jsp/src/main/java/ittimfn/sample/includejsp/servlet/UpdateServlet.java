@@ -30,7 +30,7 @@ public class UpdateServlet extends HttpServlet {
         String formid = request.getParameter("formid");
         InputModel model = Datas.getDataById(formid);
 
-        // Set formMode to "update"
+        // form.jspで更新モードに移行するためのフラグ
         request.setAttribute("formMode", "update");
 
         // Set form field values

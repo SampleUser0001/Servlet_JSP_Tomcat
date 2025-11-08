@@ -55,6 +55,27 @@
           <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
+
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>generate-md5</id>
+            <phase>package</phase>
+            <configuration>
+              <target>
+                <checksum file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
+                          algorithm="MD5"
+                          fileext=".md5"/>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 </project>

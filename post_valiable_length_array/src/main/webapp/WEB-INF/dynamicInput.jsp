@@ -27,9 +27,21 @@
         .value-column {
             width: auto;
         }
-        .action-column {
-            width: 120px;
-            text-align: center;
+        tbody tr {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tbody tr:hover {
+            background-color: #f0f0f0 !important;
+        }
+        tbody tr.selected {
+            background-color: #d4edda !important;
+        }
+        tbody tr.selected:hover {
+            background-color: #c3e6cb !important;
         }
     </style>
     <script>
@@ -44,8 +56,17 @@
             console.log('Item added. Total rows:', tbody.children.length);
         }
 
+        // 行選択機能
+        function toggleRowSelection(row) {
+            row.classList.toggle('selected');
+            console.log('Row selection toggled. Selected rows:', document.querySelectorAll('tr.selected').length);
+        }
+
         function addTableRow(tbody, itemId, itemValue) {
             const row = document.createElement('tr');
+
+            // 行クリックで選択状態をトグル
+            row.onclick = function() { toggleRowSelection(this); };
 
             // ID列
             const tdId = document.createElement('td');
@@ -64,30 +85,21 @@
             tdValue.className = 'value-column';
             tdValue.textContent = itemValue;
 
-            // 削除ボタン列
-            const tdAction = document.createElement('td');
-            tdAction.className = 'action-column';
-            const deleteBtn = document.createElement('button');
-            deleteBtn.type = 'button';
-            deleteBtn.className = 'button is-danger is-small';
-            deleteBtn.textContent = '削除';
-            deleteBtn.onclick = function() { removeTableRow(this); };
-            tdAction.appendChild(deleteBtn);
-
             row.appendChild(tdId);
             row.appendChild(tdValue);
-            row.appendChild(tdAction);
             tbody.appendChild(row);
         }
 
-        function removeTableRow(button) {
+        function deleteSelectedRows() {
             const tbody = document.getElementById('itemTableBody');
-            if (tbody.children.length > 1) {
-                button.closest('tr').remove();
-                console.log('Row removed. Remaining rows:', tbody.children.length);
-            } else {
-                alert('最低1つの行は必要です');
+            const selectedRows = tbody.querySelectorAll('tr.selected');
+
+            if (selectedRows.length === 0) {
+                return; // 何もしない
             }
+
+            selectedRows.forEach(row => row.remove());
+            console.log('Rows deleted. Remaining rows:', tbody.children.length);
         }
 
         // ポップアップを開く
@@ -125,48 +137,38 @@
     <section class="section">
         <div class="container">
             <h1 class="title">動的テーブル行の追加・削除</h1>
-            <p class="subtitle">テーブルの行を自由に追加・削除して、配列でサーバーに送信します。</p>
+            <p class="subtitle">行をクリックして選択し、「選択行を削除」ボタンで削除できます。配列でサーバーに送信します。</p>
 
             <form method="post" action="dynamicInput">
-                <table class="table is-striped is-fullwidth">
+                <table class="table is-fullwidth">
                     <thead>
                         <tr>
                             <th class="id-column">ID</th>
                             <th class="value-column">Value</th>
-                            <th class="action-column">操作</th>
                         </tr>
                     </thead>
                     <tbody id="itemTableBody">
                         <!-- 初期データ -->
-                        <tr>
+                        <tr onclick="toggleRowSelection(this)">
                             <td class="id-column">
                                 1
                                 <input type="hidden" name="itemIds" value="1">
                             </td>
                             <td class="value-column">サンプルデータ1</td>
-                            <td class="action-column">
-                                <button type="button" class="button is-danger is-small" onclick="removeTableRow(this)">削除</button>
-                            </td>
                         </tr>
-                        <tr>
+                        <tr onclick="toggleRowSelection(this)">
                             <td class="id-column">
                                 2
                                 <input type="hidden" name="itemIds" value="2">
                             </td>
                             <td class="value-column">サンプルデータ2</td>
-                            <td class="action-column">
-                                <button type="button" class="button is-danger is-small" onclick="removeTableRow(this)">削除</button>
-                            </td>
                         </tr>
-                        <tr>
+                        <tr onclick="toggleRowSelection(this)">
                             <td class="id-column">
                                 3
                                 <input type="hidden" name="itemIds" value="3">
                             </td>
                             <td class="value-column">サンプルデータ3</td>
-                            <td class="action-column">
-                                <button type="button" class="button is-danger is-small" onclick="removeTableRow(this)">削除</button>
-                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -177,6 +179,9 @@
                     </div>
                     <div class="control">
                         <button type="button" class="button is-info" onclick="openInputPopup()">+ ポップアップで追加</button>
+                    </div>
+                    <div class="control">
+                        <button type="button" class="button is-danger" onclick="deleteSelectedRows()">選択行を削除</button>
                     </div>
                     <div class="control">
                         <button type="submit" class="button is-primary">送信</button>
@@ -191,7 +196,7 @@
             <div class="box mt-5">
                 <h2 class="title is-4">受信したデータ</h2>
                 <div class="content">
-                    <table class="table is-striped is-fullwidth">
+                    <table class="table is-fullwidth">
                         <thead>
                             <tr>
                                 <th>ID</th>

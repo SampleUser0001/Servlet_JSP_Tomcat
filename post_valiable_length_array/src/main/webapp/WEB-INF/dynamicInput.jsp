@@ -61,6 +61,14 @@
             row.classList.toggle('selected');
             console.log('Row selection toggled. Selected rows:', document.querySelectorAll('tr.selected').length);
         }
+        function allSelection() {
+            const tbody = document.getElementById('itemTableBody');
+            const allRows = tbody.querySelectorAll('tr');
+            allRows.forEach(row => {
+                row.classList.add('selected');
+            });
+            console.log('All rows selected. Total:', allRows.length);
+        }
 
         function addTableRow(tbody, itemId, itemValue) {
             const row = document.createElement('tr');
@@ -179,6 +187,9 @@
                     </div>
                     <div class="control">
                         <button type="button" class="button is-info" onclick="openInputPopup()">+ ポップアップで追加</button>
+                    </div>
+                    <div class="control">
+                        <button type="button" class="button is-warning" onclick="allSelection()">+ 全行選択</button>
                     </div>
                     <div class="control">
                         <button type="button" class="button is-danger" onclick="deleteSelectedRows()">選択行を削除</button>

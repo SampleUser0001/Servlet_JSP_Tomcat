@@ -86,6 +86,17 @@
     <h1>書籍新規登録</h1>
 
     <div class="form-container">
+        <!-- エラーメッセージ表示 -->
+        <%
+            String errorMessage = (String) request.getAttribute("errorMessage");
+            if (errorMessage != null && !errorMessage.isEmpty()) {
+        %>
+            <div style="background-color:#ffe6e6;color:#b30000;border:1px solid #ffcccc;padding:10px;border-radius:4px;margin-bottom:15px;">
+                <%= errorMessage %>
+            </div>
+        <%
+            }
+        %>
         <form method="post" action="${pageContext.request.contextPath}/bookCreate">
             <%
                 // 新規登録モードを設定

@@ -39,6 +39,17 @@ public class BookCreateServlet extends HttpServlet {
         try {
             int year = book.getYear();
 
+            // 同名タイトルの重複チェック（本来はDBで一意制約など）
+            boolean exists = ALL_BOOKS.stream()
+                    .anyMatch(b -> b.getTitle() != null && b.getTitle().equals(book.getTitle()));
+            if (exists) {
+                // 入力値を保持して登録画面へ戻す
+                request.setAttribute("book", new Book(null, book.getTitle(), book.getAuthor(), book.getGenre(), year));
+                request.setAttribute("errorMessage", "同名の本が既に存在します。");
+                request.getRequestDispatcher("/jsp/bookNew.jsp").forward(request, response);
+                return;
+            }
+
             // 書籍IDを自動採番（B009, B010...）
             String bookId = String.format("B%03d", BookData.getNextId());
 

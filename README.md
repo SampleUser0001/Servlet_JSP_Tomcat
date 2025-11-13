@@ -204,6 +204,7 @@ docker-compose up -d
 - [http://localhost:8080/jsp_include_param_rendered/](http://localhost:8080/jsp_include_param_rendered/)
 - [http://localhost:8080/jsp_include_param_rendered_02/](http://localhost:8080/jsp_include_param_rendered_02/)
 - [http://localhost:8080/input_model_common_jsp/](http://localhost:8080/input_model_common_jsp/)
+- [http://localhost:8080/post_valiable_length_array/dynamicInput](http://localhost:8080/post_valiable_length_array/dynamicInput)
 
 ## EL文
 

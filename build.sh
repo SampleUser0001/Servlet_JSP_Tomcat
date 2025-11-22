@@ -23,6 +23,12 @@ mvn clean compile package
 popd
 cp ./pulldown/target/pulldown.war ./docker/webapps/
 
+pushd radio
+mvn clean compile package
+popd
+cp ./radio/target/radio.war ./docker/webapps/
+
+
 pushd jsp_include_param
 mvn clean compile package
 popd

@@ -1,5 +1,8 @@
 #!/bin/bash
-pushd docker
+
+compose_file=$1
+
+pushd docker > /dev/null
 docker-compose down
 popd
 
@@ -46,9 +49,17 @@ mvn clean compile package
 popd
 cp ./input_model_common_jsp/target/input_model_common_jsp.war ./docker/webapps/
 
-pushd docker
-docker-compose up -d
-pushd logs
+pushd docker > /dev/null
+
+if [ -z "$compose_file" ]; then
+    docker_compose_yml="compose.yml"
+else
+    docker_compose_yml="compose.${compose_file}.yml"
+fi
+docker-compose -f $docker_compose_yml up -d
+
+
+pushd logs > /dev/null
 sudo chmod +r *.*
 popd
 popd

@@ -1,0 +1,10 @@
+version: '3'
+services:
+  tomcat:
+    image: tomcat:9-jre8-alpine
+    container_name: tomcat_9_jdk8-alpine
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./webapps:/usr/local/tomcat/webapps
+      - ./logs:/usr/local/tomcat/logs:rw

@@ -55,6 +55,11 @@ mvn clean compile package
 popd
 cp ./input_model_common_jsp/target/input_model_common_jsp.war ./docker/webapps/
 
+pushd ./rest_api
+mvn clean compile package
+popd
+cp ./rest_api/target/rest_api.war ./docker/webapps/
+
 pushd docker > /dev/null
 
 if [ -z "$compose_file" ]; then

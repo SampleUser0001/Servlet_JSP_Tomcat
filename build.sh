@@ -60,6 +60,11 @@ mvn clean compile package
 popd
 cp ./rest_api/target/rest_api.war ./docker/webapps/
 
+pushd ./blob
+mvn clean compile package
+popd
+cp ./blob/target/blob.war ./docker/webapps/
+
 pushd docker > /dev/null
 
 if [ -z "$compose_file" ]; then

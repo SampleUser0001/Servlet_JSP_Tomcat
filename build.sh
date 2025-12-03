@@ -65,6 +65,12 @@ mvn clean compile package
 popd
 cp ./blob/target/blob.war ./docker/webapps/
 
+pushd ./fordate
+mvn clean compile package
+popd
+cp ./fordate/target/fordate.war ./docker/webapps/
+
+
 pushd docker > /dev/null
 
 if [ -z "$compose_file" ]; then
@@ -72,7 +78,8 @@ if [ -z "$compose_file" ]; then
 else
     docker_compose_yml="compose.${compose_file}.yml"
 fi
-docker-compose -f $docker_compose_yml up -d
+# docker-compose -f $docker_compose_yml up -d
+bash recreate.sh $docker_compose_yml
 
 
 pushd logs > /dev/null

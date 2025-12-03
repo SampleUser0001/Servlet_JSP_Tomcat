@@ -132,7 +132,7 @@
                                 </span>
                             </label>
                         </div>
-                        <p class="help">対応形式: PNG, JPG, GIF (最大10MB)</p>
+                        <p class="help">対応形式: PNG, JPG, GIF, TEXT (最大10MB)</p>
                     </div>
 
                     <div class="field">

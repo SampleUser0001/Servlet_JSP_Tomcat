@@ -55,6 +55,7 @@ public class ImageUploadServlet extends HttpServlet {
 
         try {
             Part filePart = request.getPart("image");
+            logger.debug("filePart: {}", filePart);
 
             if (filePart == null || filePart.getSize() == 0) {
                 request.setAttribute("error", "画像ファイルを選択してください");
@@ -64,6 +65,8 @@ public class ImageUploadServlet extends HttpServlet {
 
             String fileName = getFileName(filePart);
             String contentType = filePart.getContentType();
+
+            logger.debug("contentType: {}", contentType);
 
             // Validate content type
             if (!isValidImageType(contentType)) {
@@ -148,7 +151,8 @@ public class ImageUploadServlet extends HttpServlet {
                (contentType.equals("image/jpeg") ||
                 contentType.equals("image/jpg") ||
                 contentType.equals("image/png") ||
-                contentType.equals("image/gif"));
+                contentType.equals("image/gif") || 
+                contentType.equals("text/plain"));
     }
 
     private byte[] readInputStream(InputStream inputStream) throws IOException {

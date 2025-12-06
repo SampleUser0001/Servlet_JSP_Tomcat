@@ -116,6 +116,19 @@
                 </h2>
                 <form action="${pageContext.request.contextPath}/images" method="post" enctype="multipart/form-data">
                     <div class="field">
+                        <label class="label">
+                            <i class="fas fa-heading"></i> タイトル
+                        </label>
+                        <div class="control">
+                            <input class="input" type="text" name="title" placeholder="画像のタイトルを入力してください" required>
+                        </div>
+                        <p class="help">画像を識別するためのタイトルを入力してください</p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">
+                            <i class="fas fa-image"></i> 画像ファイル
+                        </label>
                         <div class="file has-name is-fullwidth">
                             <label class="file-label">
                                 <input class="file-input" type="file" name="image" id="fileInput" accept="image/*" required>
@@ -176,9 +189,13 @@
                                         </div>
                                         <div class="card-content">
                                             <div class="content">
-                                                <p class="subtitle is-6 mb-2">
+                                                <p class="title is-5 mb-2">
+                                                    <i class="fas fa-heading"></i>
+                                                    ${image.title}
+                                                </p>
+                                                <p class="is-size-7 mb-3">
                                                     <i class="fas fa-file-image"></i>
-                                                    <strong class="has-text-weight-semibold">${image.name}</strong>
+                                                    <span class="has-text-grey">${image.name}</span>
                                                 </p>
                                                 <p class="is-size-7">
                                                     <span class="tag is-light">

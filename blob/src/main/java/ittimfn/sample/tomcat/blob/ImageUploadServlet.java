@@ -54,6 +54,16 @@ public class ImageUploadServlet extends HttpServlet {
         logger.debug("doPost called - uploading image");
 
         try {
+            // Get title parameter
+            request.setCharacterEncoding("UTF-8");
+            String title = request.getParameter("title");
+
+            if (title == null || title.trim().isEmpty()) {
+                request.setAttribute("error", "タイトルを入力してください");
+                doGet(request, response);
+                return;
+            }
+
             Part filePart = request.getPart("image");
             logger.debug("filePart: {}", filePart);
 
@@ -79,9 +89,9 @@ public class ImageUploadServlet extends HttpServlet {
             byte[] imageData = readInputStream(filePart.getInputStream());
 
             // Save to database
-            saveImage(fileName, contentType, imageData);
+            saveImage(title, fileName, contentType, imageData);
 
-            logger.info("Image uploaded successfully: {}", fileName);
+            logger.info("Image uploaded successfully: {} ({})", title, fileName);
             request.setAttribute("success", "画像のアップロードに成功しました");
 
             // Redirect to avoid form resubmission
@@ -96,7 +106,7 @@ public class ImageUploadServlet extends HttpServlet {
 
     private List<Image> getAllImages() throws SQLException {
         List<Image> images = new ArrayList<>();
-        String sql = "SELECT id, name, content_type, file_size, uploaded_at FROM images ORDER BY uploaded_at DESC";
+        String sql = "SELECT id, title, name, content_type, file_size, uploaded_at FROM images ORDER BY uploaded_at DESC";
 
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -105,6 +115,7 @@ public class ImageUploadServlet extends HttpServlet {
             while (rs.next()) {
                 Image image = new Image();
                 image.setId(rs.getInt("id"));
+                image.setTitle(rs.getString("title"));
                 image.setName(rs.getString("name"));
                 image.setContentType(rs.getString("content_type"));
                 image.setFileSize(rs.getLong("file_size"));
@@ -116,16 +127,17 @@ public class ImageUploadServlet extends HttpServlet {
         return images;
     }
 
-    private void saveImage(String fileName, String contentType, byte[] imageData) throws SQLException {
-        String sql = "INSERT INTO images (name, content_type, image_data, file_size) VALUES (?, ?, ?, ?)";
+    private void saveImage(String title, String fileName, String contentType, byte[] imageData) throws SQLException {
+        String sql = "INSERT INTO images (title, name, content_type, image_data, file_size) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, fileName);
-            stmt.setString(2, contentType);
-            stmt.setBytes(3, imageData);
-            stmt.setLong(4, imageData.length);
+            stmt.setString(1, title);
+            stmt.setString(2, fileName);
+            stmt.setString(3, contentType);
+            stmt.setBytes(4, imageData);
+            stmt.setLong(5, imageData.length);
 
             stmt.executeUpdate();
         }

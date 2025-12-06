@@ -223,3 +223,10 @@ docker-compose up -d
 - el-api.jar
 - jasper.jar
 - jasper-el.jar
+
+## servlet-apiのバージョン特定コマンド
+
+``` bash
+servlet_jar_path=servlet-api.jar
+unzip -p $servlet_jar_path META-INF/MANIFEST.MF | grep -E "Implementation-Version|Specification-Version"
+```

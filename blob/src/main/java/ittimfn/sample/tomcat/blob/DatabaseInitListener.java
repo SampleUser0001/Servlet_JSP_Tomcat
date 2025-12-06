@@ -25,6 +25,7 @@ public class DatabaseInitListener implements ServletContextListener {
             // Create images table
             String createTableSQL = "CREATE TABLE IF NOT EXISTS images (" +
                     "id INT AUTO_INCREMENT PRIMARY KEY, " +
+                    "title VARCHAR(255), " +
                     "name VARCHAR(255) NOT NULL, " +
                     "content_type VARCHAR(100) NOT NULL, " +
                     "image_data BLOB NOT NULL, " +
@@ -33,6 +34,16 @@ public class DatabaseInitListener implements ServletContextListener {
                     ")";
 
             stmt.execute(createTableSQL);
+
+            // Add title column if it doesn't exist (for existing databases)
+            try {
+                String alterTableSQL = "ALTER TABLE images ADD COLUMN IF NOT EXISTS title VARCHAR(255)";
+                stmt.execute(alterTableSQL);
+                logger.info("Added title column to images table");
+            } catch (Exception e) {
+                logger.debug("Title column might already exist: " + e.getMessage());
+            }
+
             logger.info("Database initialized successfully");
 
         } catch (Exception e) {

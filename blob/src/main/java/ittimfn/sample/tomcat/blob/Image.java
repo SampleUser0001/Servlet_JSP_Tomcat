@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Image {
     private int id;
+    private String title;
     private String name;
     private String contentType;
     private byte[] imageData;
